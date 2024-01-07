@@ -8,13 +8,11 @@
 void display(cv::Mat image, std::string windowName = "Image") {
     cv::namedWindow(windowName);
     cv::imshow(windowName, image);
-    cv::waitKey(1000 * 100);
-    cv::destroyWindow(windowName);
 }
 
-int main(int argc, char* argv[]){
+int main(void){
   
-  cv::Mat src = cv::imread(argv[1], 0);
+  cv::Mat src = cv::imread("campus_bw.png", 0);
 
   display(src, "src");
 
@@ -38,9 +36,14 @@ int main(int argc, char* argv[]){
   cv::Mat dst;
   warpPerspective(src, dst, matrix, cv::Size(512,256));
 
+
   display(dst, "dst");
 
 //  cv::imwrite("dst_image.jpg", dst);
+
+  cv::waitKey(1000 * 100);
+  cv::destroyWindow("src");
+  cv::destroyWindow("dst");
 
   return 0;
 }
